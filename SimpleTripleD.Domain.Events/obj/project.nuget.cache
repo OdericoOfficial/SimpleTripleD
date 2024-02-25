@@ -1,0 +1,13 @@
+{
+  "version": 2,
+  "dgSpecHash": "HQkAvsjelvkDHTenYtUDON3ZVhqbl8BZMMjqL7k4uaFlXO37K/Ir4aVU7Cy/9RuCirH1OmN4f6MI4WJgMI09xQ==",
+  "success": true,
+  "projectFilePath": "D:\\aspdotnet\\SimpleTripleD\\SimpleTripleD.Domain.Events\\SimpleTripleD.Domain.Events.csproj",
+  "expectedPackageFiles": [
+    "D:\\NuGet\\packages\\fluentvalidation\\11.9.0\\fluentvalidation.11.9.0.nupkg.sha512",
+    "D:\\NuGet\\packages\\mediatr\\12.2.0\\mediatr.12.2.0.nupkg.sha512",
+    "D:\\NuGet\\packages\\mediatr.contracts\\2.0.1\\mediatr.contracts.2.0.1.nupkg.sha512",
+    "D:\\NuGet\\packages\\microsoft.extensions.dependencyinjection.abstractions\\8.0.0\\microsoft.extensions.dependencyinjection.abstractions.8.0.0.nupkg.sha512"
+  ],
+  "logs": []
+}

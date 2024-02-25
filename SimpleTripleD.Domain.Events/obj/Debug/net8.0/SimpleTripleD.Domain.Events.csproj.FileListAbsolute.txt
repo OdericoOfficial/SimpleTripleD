@@ -1,0 +1,12 @@
+D:\aspdotnet\SimpleTripleD\SimpleTripleD.Domain.Events\bin\Debug\net8.0\SimpleTripleD.Domain.Events.deps.json
+D:\aspdotnet\SimpleTripleD\SimpleTripleD.Domain.Events\bin\Debug\net8.0\SimpleTripleD.Domain.Events.dll
+D:\aspdotnet\SimpleTripleD\SimpleTripleD.Domain.Events\bin\Debug\net8.0\SimpleTripleD.Domain.Events.pdb
+D:\aspdotnet\SimpleTripleD\SimpleTripleD.Domain.Events\obj\Debug\net8.0\SimpleTripleD.Domain.Events.csproj.AssemblyReference.cache
+D:\aspdotnet\SimpleTripleD\SimpleTripleD.Domain.Events\obj\Debug\net8.0\SimpleTripleD.Domain.Events.GeneratedMSBuildEditorConfig.editorconfig
+D:\aspdotnet\SimpleTripleD\SimpleTripleD.Domain.Events\obj\Debug\net8.0\SimpleTripleD.Domain.Events.AssemblyInfoInputs.cache
+D:\aspdotnet\SimpleTripleD\SimpleTripleD.Domain.Events\obj\Debug\net8.0\SimpleTripleD.Domain.Events.AssemblyInfo.cs
+D:\aspdotnet\SimpleTripleD\SimpleTripleD.Domain.Events\obj\Debug\net8.0\SimpleTripleD.Domain.Events.csproj.CoreCompileInputs.cache
+D:\aspdotnet\SimpleTripleD\SimpleTripleD.Domain.Events\obj\Debug\net8.0\SimpleTripleD.Domain.Events.dll
+D:\aspdotnet\SimpleTripleD\SimpleTripleD.Domain.Events\obj\Debug\net8.0\refint\SimpleTripleD.Domain.Events.dll
+D:\aspdotnet\SimpleTripleD\SimpleTripleD.Domain.Events\obj\Debug\net8.0\SimpleTripleD.Domain.Events.pdb
+D:\aspdotnet\SimpleTripleD\SimpleTripleD.Domain.Events\obj\Debug\net8.0\ref\SimpleTripleD.Domain.Events.dll

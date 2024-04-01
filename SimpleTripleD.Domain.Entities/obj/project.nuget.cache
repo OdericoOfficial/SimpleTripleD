@@ -1,11 +1,10 @@
 {
   "version": 2,
-  "dgSpecHash": "lOpkCQds6YnXo6nXAKsZt0QJMeJg3Y+VsFC0EgDaeUaDlp6NWpl9gsAbRtQhS9Qo7pyr3eurRBEWkRCcsia4yg==",
+  "dgSpecHash": "f+8U9ItZxsxZSC+osa6F8PB5MlUroO93QC2xPZYg12eQIIj9vSF2kLVz3C3jISEUBX4Hc5x+a9+UhAJRGefRPw==",
   "success": true,
-  "projectFilePath": "D:\\aspdotnet\\SimpleTripleD\\SimpleTripleD.Domain.Entities\\SimpleTripleD.Domain.Entities.csproj",
+  "projectFilePath": "D:\\aspdotnet\\TripleD\\SimpleTripleD\\SimpleTripleD.Domain.Entities\\SimpleTripleD.Domain.Entities.csproj",
   "expectedPackageFiles": [
     "D:\\NuGet\\packages\\dapr.client\\1.12.0\\dapr.client.1.12.0.nupkg.sha512",
-    "D:\\NuGet\\packages\\fluentvalidation\\11.9.0\\fluentvalidation.11.9.0.nupkg.sha512",
     "D:\\NuGet\\packages\\google.api.commonprotos\\2.2.0\\google.api.commonprotos.2.2.0.nupkg.sha512",
     "D:\\NuGet\\packages\\google.protobuf\\3.15.0\\google.protobuf.3.15.0.nupkg.sha512",
     "D:\\NuGet\\packages\\grpc.core.api\\2.52.0\\grpc.core.api.2.52.0.nupkg.sha512",

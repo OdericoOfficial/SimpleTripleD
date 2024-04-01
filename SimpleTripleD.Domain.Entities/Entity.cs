@@ -1,20 +1,25 @@
 ﻿namespace SimpleTripleD.Domain.Entities
 {
+#nullable disable
     [Serializable]
     public abstract class Entity : IEntity
     {
-        public abstract object?[] GetKeys();
+        public abstract object[] Keys { get; }
     }
 
     [Serializable]
-    public abstract class Entity<TKey> : IEntity<TKey>, IEntity
+    public abstract class Entity<TKey> : Entity, IEntity<TKey>, IEntity
     {
-        public TKey Id { get; }
+        private TKey _id;
+        public TKey Id
+            => _id;
 
-        public Entity(TKey id)
-            => Id = id;
+        public Entity() { }
 
-        public object?[] GetKeys()
-            => new object?[] { Id };
+        public override object[] Keys
+            => IsTransient() ? [] : [Id];
+
+        public bool IsTransient()
+            => EqualityComparer<TKey>.Default.Equals(_id, default(TKey));
     }
 }

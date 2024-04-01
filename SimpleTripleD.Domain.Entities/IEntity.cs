@@ -2,7 +2,7 @@
 {
     public interface IEntity
     {
-        object?[] GetKeys();
+        object[] Keys { get; }
     }
 
     public interface IEntity<TKey> : IEntity

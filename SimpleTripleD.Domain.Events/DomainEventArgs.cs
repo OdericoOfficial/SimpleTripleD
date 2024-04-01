@@ -4,9 +4,17 @@ namespace SimpleTripleD.Domain.Events
 {
     public abstract class DomainEventArgs : INotification
     {
-        public IntegrationEvent IntegrationEvent { get; protected set; }
+        public Guid EventId { get; protected set; }
 
-        public DomainEventArgs(IntegrationEvent integrationEvent)
-            => IntegrationEvent = integrationEvent;
+        public string EventType { get; protected set; }
+
+        public DateTime Timestamp { get; }
+
+        public DomainEventArgs()
+        {
+            EventId = Guid.NewGuid();
+            EventType = GetType().Name;
+            Timestamp = DateTime.UtcNow;
+        }
     }
 }

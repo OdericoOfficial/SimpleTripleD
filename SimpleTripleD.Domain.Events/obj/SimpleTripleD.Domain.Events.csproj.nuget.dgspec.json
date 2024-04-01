@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "D:\\aspdotnet\\SimpleTripleD\\SimpleTripleD.Domain.Events\\SimpleTripleD.Domain.Events.csproj": {}
+    "D:\\aspdotnet\\TripleD\\SimpleTripleD\\SimpleTripleD.Domain.Events\\SimpleTripleD.Domain.Events.csproj": {}
   },
   "projects": {
-    "D:\\aspdotnet\\SimpleTripleD\\SimpleTripleD.Domain.Events\\SimpleTripleD.Domain.Events.csproj": {
+    "D:\\aspdotnet\\TripleD\\SimpleTripleD\\SimpleTripleD.Domain.Events\\SimpleTripleD.Domain.Events.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "D:\\aspdotnet\\SimpleTripleD\\SimpleTripleD.Domain.Events\\SimpleTripleD.Domain.Events.csproj",
+        "projectUniqueName": "D:\\aspdotnet\\TripleD\\SimpleTripleD\\SimpleTripleD.Domain.Events\\SimpleTripleD.Domain.Events.csproj",
         "projectName": "SimpleTripleD.Domain.Events",
-        "projectPath": "D:\\aspdotnet\\SimpleTripleD\\SimpleTripleD.Domain.Events\\SimpleTripleD.Domain.Events.csproj",
+        "projectPath": "D:\\aspdotnet\\TripleD\\SimpleTripleD\\SimpleTripleD.Domain.Events\\SimpleTripleD.Domain.Events.csproj",
         "packagesPath": "D:\\NuGet\\packages",
-        "outputPath": "D:\\aspdotnet\\SimpleTripleD\\SimpleTripleD.Domain.Events\\obj\\",
+        "outputPath": "D:\\aspdotnet\\TripleD\\SimpleTripleD\\SimpleTripleD.Domain.Events\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
@@ -46,10 +46,6 @@
         "net8.0": {
           "targetAlias": "net8.0",
           "dependencies": {
-            "FluentValidation": {
-              "target": "Package",
-              "version": "[11.9.0, )"
-            },
             "MediatR": {
               "target": "Package",
               "version": "[12.2.0, )"

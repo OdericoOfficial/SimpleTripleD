@@ -5,11 +5,27 @@ VisualStudioVersion = 17.0.31903.59
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SimpleTripleD.Domain.Entities", "SimpleTripleD.Domain.Entities\SimpleTripleD.Domain.Entities.csproj", "{091C27F7-18ED-4624-94B9-41C29642C00D}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SimpleTripleD.Domain.Events", "SimpleTripleD.Domain.Events\SimpleTripleD.Domain.Events.csproj", "{DE678A0A-252B-40D6-94C1-64A99725F5EF}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SimpleTripleD.Domain.Events", "SimpleTripleD.Domain.Events\SimpleTripleD.Domain.Events.csproj", "{DE678A0A-252B-40D6-94C1-64A99725F5EF}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SimpleTripleD.Domain.Events.Distributed", "SimpleTripleD.Domain.Events.Distributed\SimpleTripleD.Domain.Events.Distributed.csproj", "{4AF86F91-C078-4109-800B-CF4E53E98EED}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SimpleTripleD.Domain.Events.Distributed", "SimpleTripleD.Domain.Events.Distributed\SimpleTripleD.Domain.Events.Distributed.csproj", "{4AF86F91-C078-4109-800B-CF4E53E98EED}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SimpleTripleD.Domain.Repositories", "SimpleTripleD.Domain.Repositories\SimpleTripleD.Domain.Repositories.csproj", "{0C500617-C54E-4AD6-BA4D-D2B8957BD0A2}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SimpleTripleD.Infrastruct.Auditting", "..\SimpleIM\src\SimpleTripleD\SimpleTripleD.Infrastruct.Auditting\SimpleTripleD.Infrastruct.Auditting.csproj", "{F5C6EB5E-2888-49E8-A079-EA49CFB99F42}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SimpleTripleD.Infrastruct.MultiTenancy", "..\SimpleIM\src\SimpleTripleD\SimpleTripleD.Infrastruct.MultiTenancy\SimpleTripleD.Infrastruct.MultiTenancy.csproj", "{0D80A532-7C05-4458-8A7C-EB48E6298955}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SimpleTripleD.Infrastruct.Repositories", "..\SimpleIM\src\SimpleTripleD\SimpleTripleD.Infrastruct.Repositories\SimpleTripleD.Infrastruct.Repositories.csproj", "{F0C756F5-9111-41B4-9AFC-FD4FC7AF3EAD}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SimpleTripleD.Infrastruct.Dapr", "SimpleTripleD.Infrastruct.Dapr\SimpleTripleD.Infrastruct.Dapr.csproj", "{33C71B2B-F6EC-4C69-955F-BF27093E9C50}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SimpleTripleD.Domain.Commands", "SimpleTripleD.Domain.Commands\SimpleTripleD.Domain.Commands.csproj", "{40862E86-B82D-4D48-BD6D-8D27104138C8}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SimpleTripleD.Domain.Auditting", "SimpleTripleD.Domain.Auditting\SimpleTripleD.Domain.Auditting.csproj", "{F4929E94-9E15-4883-81C1-2111CD8CEAD2}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SimpleTripleD.Domain.MultiTenancy", "SimpleTripleD.Domain.MultiTenancy\SimpleTripleD.Domain.MultiTenancy.csproj", "{B03DA5A1-0CC5-40EA-86FF-C2950FB24A05}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SimpleTripleD.Domain.Cache", "SimpleTripleD.Domain.Cache\SimpleTripleD.Domain.Cache.csproj", "{74567BF7-CD88-46B6-8AB8-21E620AE0D31}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SimpleTripleD.Modules", "SimpleTripleD.Modules\SimpleTripleD.Modules.csproj", "{1292E8D3-00DB-40C8-B667-5913DEDADCDD}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -29,10 +45,42 @@ Global
 		{4AF86F91-C078-4109-800B-CF4E53E98EED}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{4AF86F91-C078-4109-800B-CF4E53E98EED}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{4AF86F91-C078-4109-800B-CF4E53E98EED}.Release|Any CPU.Build.0 = Release|Any CPU
-		{0C500617-C54E-4AD6-BA4D-D2B8957BD0A2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{0C500617-C54E-4AD6-BA4D-D2B8957BD0A2}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{0C500617-C54E-4AD6-BA4D-D2B8957BD0A2}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{0C500617-C54E-4AD6-BA4D-D2B8957BD0A2}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F5C6EB5E-2888-49E8-A079-EA49CFB99F42}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F5C6EB5E-2888-49E8-A079-EA49CFB99F42}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F5C6EB5E-2888-49E8-A079-EA49CFB99F42}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F5C6EB5E-2888-49E8-A079-EA49CFB99F42}.Release|Any CPU.Build.0 = Release|Any CPU
+		{0D80A532-7C05-4458-8A7C-EB48E6298955}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0D80A532-7C05-4458-8A7C-EB48E6298955}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0D80A532-7C05-4458-8A7C-EB48E6298955}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0D80A532-7C05-4458-8A7C-EB48E6298955}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F0C756F5-9111-41B4-9AFC-FD4FC7AF3EAD}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F0C756F5-9111-41B4-9AFC-FD4FC7AF3EAD}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F0C756F5-9111-41B4-9AFC-FD4FC7AF3EAD}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F0C756F5-9111-41B4-9AFC-FD4FC7AF3EAD}.Release|Any CPU.Build.0 = Release|Any CPU
+		{33C71B2B-F6EC-4C69-955F-BF27093E9C50}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{33C71B2B-F6EC-4C69-955F-BF27093E9C50}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{33C71B2B-F6EC-4C69-955F-BF27093E9C50}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{33C71B2B-F6EC-4C69-955F-BF27093E9C50}.Release|Any CPU.Build.0 = Release|Any CPU
+		{40862E86-B82D-4D48-BD6D-8D27104138C8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{40862E86-B82D-4D48-BD6D-8D27104138C8}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{40862E86-B82D-4D48-BD6D-8D27104138C8}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{40862E86-B82D-4D48-BD6D-8D27104138C8}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F4929E94-9E15-4883-81C1-2111CD8CEAD2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F4929E94-9E15-4883-81C1-2111CD8CEAD2}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F4929E94-9E15-4883-81C1-2111CD8CEAD2}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F4929E94-9E15-4883-81C1-2111CD8CEAD2}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B03DA5A1-0CC5-40EA-86FF-C2950FB24A05}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B03DA5A1-0CC5-40EA-86FF-C2950FB24A05}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B03DA5A1-0CC5-40EA-86FF-C2950FB24A05}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B03DA5A1-0CC5-40EA-86FF-C2950FB24A05}.Release|Any CPU.Build.0 = Release|Any CPU
+		{74567BF7-CD88-46B6-8AB8-21E620AE0D31}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{74567BF7-CD88-46B6-8AB8-21E620AE0D31}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{74567BF7-CD88-46B6-8AB8-21E620AE0D31}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{74567BF7-CD88-46B6-8AB8-21E620AE0D31}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1292E8D3-00DB-40C8-B667-5913DEDADCDD}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1292E8D3-00DB-40C8-B667-5913DEDADCDD}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1292E8D3-00DB-40C8-B667-5913DEDADCDD}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1292E8D3-00DB-40C8-B667-5913DEDADCDD}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

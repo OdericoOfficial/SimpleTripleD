@@ -1,9 +1,9 @@
 ﻿using Microsoft.EntityFrameworkCore;
-using SimpleTripleD.Domain.Entities.MultiTenancy;
+using SimpleTripleD.Domain.MultiTenancy;
 
 namespace SimpleTripleD.Infrastruct.MultiTenancy
 {
-    public class TenantDbContext : DbContext
+    internal class TenantDbContext : DbContext
     {
         public virtual DbSet<Tenant> Tenants { get; set; }
 
@@ -11,7 +11,7 @@ namespace SimpleTripleD.Infrastruct.MultiTenancy
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-            modelBuilder.ApplyConfiguration(new TanentConfiguration());
+            modelBuilder.ApplyConfiguration(new TenantConfiguration());
             base.OnModelCreating(modelBuilder);
         }
     }

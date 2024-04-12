@@ -4,17 +4,29 @@ namespace SimpleTripleD.Modules
 {
     public abstract class DependencyModule
     {
-        private readonly List<OnConfigurationAssemblyScanning> _onConfigurationAssemblyScanning
-            = new List<OnConfigurationAssemblyScanning>();
+        public event OnConfigurationAssemblyScanning? OnConfigurationAssemblyScanning
+        {
+            add => AssemblyScanner.OnConfigurationAssemblyScanning += value;
+            remove => AssemblyScanner.OnConfigurationAssemblyScanning -= value;
+        }
 
-        private readonly List<OnInitialzationAssemblyScanning> _onInitialzationAssemblyScanning
-            = new List<OnInitialzationAssemblyScanning>();
+        public event OnConfigurationAssemblyScanned? OnConfigurationAssemblyScanned
+        {
+            add => AssemblyScanner.OnConfigurationAssemblyScanned += value;
+            remove => AssemblyScanner.OnConfigurationAssemblyScanned -= value;
+        }
 
-        public IEnumerable<OnConfigurationAssemblyScanning> OnConfigurationAssemblyScanning
-            => _onConfigurationAssemblyScanning;
+        public event OnInitialzationAssemblyScanning? OnInitialzationAssemblyScanning
+        {
+            add => AssemblyScanner.OnInitialzationAssemblyScanning += value;
+            remove => AssemblyScanner.OnInitialzationAssemblyScanning -= value;
+        }
 
-        public IEnumerable<OnInitialzationAssemblyScanning> OnInitialzationAssemblyScanning
-            => _onInitialzationAssemblyScanning;
+        public event OnInitialzationAssemblyScanned? OnInitialzationAssemblyScanned
+        { 
+            add => AssemblyScanner.OnInitialzationAssemblyScanned += value;
+            remove => AssemblyScanner.OnInitialzationAssemblyScanned -= value;
+        }
 
         public virtual void ConfigureServices(WebApplicationBuilder builder)
         { 
@@ -28,7 +40,6 @@ namespace SimpleTripleD.Modules
 
         public virtual void OnApplicationInitialization(WebApplication app)
         {
-
         }
 
         public virtual ValueTask OnApplicationInitializationAsync(WebApplication app)
@@ -36,11 +47,5 @@ namespace SimpleTripleD.Modules
             OnApplicationInitialization(app);
             return ValueTask.CompletedTask;
         }
-
-        protected void AddConfigurationAssemblyScanning(OnConfigurationAssemblyScanning onConfigurationAssemblyScanning)
-            => _onConfigurationAssemblyScanning.Add(onConfigurationAssemblyScanning);
-
-        protected void AddInitialzationAssemblyScanningEvent(OnInitialzationAssemblyScanning onInitialzationAssemblyScanning)
-            => _onInitialzationAssemblyScanning.Add(onInitialzationAssemblyScanning);
     }
 }

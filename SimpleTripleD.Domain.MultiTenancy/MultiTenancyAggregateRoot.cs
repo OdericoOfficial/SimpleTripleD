@@ -12,9 +12,5 @@ namespace SimpleTripleD.Domain.MultiTenancy
     public abstract class MultiTenancyAggregateRoot<TKey> : AggregateRoot<TKey>, IAggregateRoot<TKey>, IAggregateRoot, IEntity, IDomainEvents, IIntegrationEvents, IMultiTenancyObject
     {
         public Guid TenantId { get; set; }
-        
-        public MultiTenancyAggregateRoot()
-        {
-        }
     }
 }

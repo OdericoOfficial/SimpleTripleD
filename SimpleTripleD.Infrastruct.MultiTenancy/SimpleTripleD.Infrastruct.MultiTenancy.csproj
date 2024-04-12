@@ -8,7 +8,11 @@
 
   <ItemGroup>
 	<FrameworkReference Include="Microsoft.AspNetCore.App"></FrameworkReference>
-    <ProjectReference Include="..\SimpleTripleD.Infrastruct.Auditting\SimpleTripleD.Infrastruct.Auditting.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\SimpleTripleD.Domain.MultiTenancy\SimpleTripleD.Domain.MultiTenancy.csproj" />
+    <ProjectReference Include="..\SimpleTripleD.Infrastruct.Repositories\SimpleTripleD.Infrastruct.Repositories.csproj" />
   </ItemGroup>
 
 </Project>

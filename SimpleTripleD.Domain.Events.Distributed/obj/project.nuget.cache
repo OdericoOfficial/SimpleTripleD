@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "3YToaHWwhk9DHPT+/LXjGWRo5Jzsp3hK2hm7GX/6stJP6gUiR4eJHrwivvU316YKheHQ9z34PG3gOY9+qZr3ng==",
+  "dgSpecHash": "5xBCb0UVrCrDPFRmdVzlxWFjvxhhJei8bRnwkSjGNTvp3OSBr302DX/FVMhWFcyVejDvZuBb1P5/lwgMTQQ/JA==",
   "success": true,
-  "projectFilePath": "D:\\aspdotnet\\TripleD\\SimpleTripleD\\SimpleTripleD.Domain.Events.Distributed\\SimpleTripleD.Domain.Events.Distributed.csproj",
+  "projectFilePath": "D:\\aspdotnet\\SimpleTripleD\\SimpleTripleD.Domain.Events.Distributed\\SimpleTripleD.Domain.Events.Distributed.csproj",
   "expectedPackageFiles": [
     "D:\\NuGet\\packages\\dapr.client\\1.12.0\\dapr.client.1.12.0.nupkg.sha512",
     "D:\\NuGet\\packages\\google.api.commonprotos\\2.2.0\\google.api.commonprotos.2.2.0.nupkg.sha512",

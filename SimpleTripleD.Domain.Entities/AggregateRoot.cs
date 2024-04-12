@@ -1,15 +1,18 @@
 ﻿using SimpleTripleD.Domain.Events;
 using SimpleTripleD.Domain.Events.Distributed;
 using System.Collections.ObjectModel;
+using System.Text.Json.Serialization;
 
 namespace SimpleTripleD.Domain.Entities
 {
     [Serializable]
     public abstract class AggregateRoot : Entity, IAggregateRoot, IEntity, IDomainEvents, IIntegrationEvents
     {
+        [JsonIgnore]
         private readonly ICollection<DomainEventArgs> _domainEvents
             = new Collection<DomainEventArgs>();
 
+        [JsonIgnore]
         private readonly ICollection<IntegrationEventArgs> _integrationEvents
             = new Collection<IntegrationEventArgs>();
 
@@ -36,9 +39,11 @@ namespace SimpleTripleD.Domain.Entities
     public abstract class AggregateRoot<TKey> : Entity<TKey>, IAggregateRoot<TKey>, IAggregateRoot, IEntity, IDomainEvents, IIntegrationEvents
     {
 
+        [JsonIgnore]
         private readonly ICollection<DomainEventArgs> _domainEvents
             = new Collection<DomainEventArgs>();
 
+        [JsonIgnore]
         private readonly ICollection<IntegrationEventArgs> _integrationEvents
             = new Collection<IntegrationEventArgs>();
 
@@ -59,9 +64,5 @@ namespace SimpleTripleD.Domain.Entities
 
         public void AddIntegrationEvent<TIntegrationEventArgs>(TIntegrationEventArgs args) where TIntegrationEventArgs : IntegrationEventArgs
             => _integrationEvents.Add(args);
-    
-        public AggregateRoot()
-        {
-        }
     }
 }

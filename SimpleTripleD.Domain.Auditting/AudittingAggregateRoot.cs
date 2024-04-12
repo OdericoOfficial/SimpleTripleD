@@ -37,10 +37,5 @@ namespace SimpleTripleD.Domain.Auditting
         public DateTime DeleteTime { get; set; }
 
         public string? DeleterId { get; set; }
-
-        public AudittingAggregateRoot()
-        {
-
-        }
     }
 }

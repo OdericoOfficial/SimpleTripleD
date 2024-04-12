@@ -24,12 +24,16 @@ namespace SimpleTripleD.Domain.Auditting
         public string? Url
             => _url;
 
+        private string? _parameter;
+        public string? Parameter
+            => _parameter;
+
         private DateTime _executionTime;
         public DateTime ExecutionTime
             => _executionTime;
 
-        private int _executionDuration;
-        public int ExecutionDuration
+        private long _executionDuration;
+        public long ExecutionDuration
             => _executionDuration;
 
         private string? _exception;
@@ -37,7 +41,7 @@ namespace SimpleTripleD.Domain.Auditting
             => _exception;
 
         public ExecutingMethodRecord(string? clientIpAddress, string? browserInfo, string? httpMethod, int? httpStatusCode,
-            string? url, DateTime executionTime, int executionDuration, string? exception)
+            string? url, string? parameter, DateTime executionTime, long executionDuration, string? exception)
         {
             _clientIpAddress = clientIpAddress;
             _browserInfo = browserInfo;
@@ -65,6 +69,6 @@ namespace SimpleTripleD.Domain.Auditting
                 ^ _httpStatusCode ?? 0 
                 ^ _url?.GetHashCode() ?? 0 
                 ^ _executionTime.GetHashCode()
-                ^ _executionDuration;
+                ^ (int)_executionDuration;
     }
 }

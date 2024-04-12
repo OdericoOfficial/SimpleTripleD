@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "10Oro/cvT+MQWylEzRRkqCW8F7pintuTq5Pa2oL94GtsWXB9dTJaQhDDTgHnGPVVmpWJ42KhztVt2zGY9dsyoA==",
+  "dgSpecHash": "Um55BWeQd+kg3Q7z+KsDrtaLincbPDpV3u7yGAVhMWGh0R9dY93kLbTeGFhSOUPPXjX8u5a47b1gGzDfyOdc8g==",
   "success": true,
-  "projectFilePath": "D:\\aspdotnet\\TripleD\\SimpleTripleD\\SimpleTripleD.Domain.Events\\SimpleTripleD.Domain.Events.csproj",
+  "projectFilePath": "D:\\aspdotnet\\SimpleTripleD\\SimpleTripleD.Domain.Events\\SimpleTripleD.Domain.Events.csproj",
   "expectedPackageFiles": [
     "D:\\NuGet\\packages\\mediatr\\12.2.0\\mediatr.12.2.0.nupkg.sha512",
     "D:\\NuGet\\packages\\mediatr.contracts\\2.0.1\\mediatr.contracts.2.0.1.nupkg.sha512",

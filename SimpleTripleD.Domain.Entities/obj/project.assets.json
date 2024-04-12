@@ -528,11 +528,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "D:\\aspdotnet\\TripleD\\SimpleTripleD\\SimpleTripleD.Domain.Entities\\SimpleTripleD.Domain.Entities.csproj",
+      "projectUniqueName": "D:\\aspdotnet\\SimpleTripleD\\SimpleTripleD.Domain.Entities\\SimpleTripleD.Domain.Entities.csproj",
       "projectName": "SimpleTripleD.Domain.Entities",
-      "projectPath": "D:\\aspdotnet\\TripleD\\SimpleTripleD\\SimpleTripleD.Domain.Entities\\SimpleTripleD.Domain.Entities.csproj",
+      "projectPath": "D:\\aspdotnet\\SimpleTripleD\\SimpleTripleD.Domain.Entities\\SimpleTripleD.Domain.Entities.csproj",
       "packagesPath": "D:\\NuGet\\packages",
-      "outputPath": "D:\\aspdotnet\\TripleD\\SimpleTripleD\\SimpleTripleD.Domain.Entities\\obj\\",
+      "outputPath": "D:\\aspdotnet\\SimpleTripleD\\SimpleTripleD.Domain.Entities\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
@@ -555,11 +555,11 @@
         "net8.0": {
           "targetAlias": "net8.0",
           "projectReferences": {
-            "D:\\aspdotnet\\TripleD\\SimpleTripleD\\SimpleTripleD.Domain.Events.Distributed\\SimpleTripleD.Domain.Events.Distributed.csproj": {
-              "projectPath": "D:\\aspdotnet\\TripleD\\SimpleTripleD\\SimpleTripleD.Domain.Events.Distributed\\SimpleTripleD.Domain.Events.Distributed.csproj"
+            "D:\\aspdotnet\\SimpleTripleD\\SimpleTripleD.Domain.Events.Distributed\\SimpleTripleD.Domain.Events.Distributed.csproj": {
+              "projectPath": "D:\\aspdotnet\\SimpleTripleD\\SimpleTripleD.Domain.Events.Distributed\\SimpleTripleD.Domain.Events.Distributed.csproj"
             },
-            "D:\\aspdotnet\\TripleD\\SimpleTripleD\\SimpleTripleD.Domain.Events\\SimpleTripleD.Domain.Events.csproj": {
-              "projectPath": "D:\\aspdotnet\\TripleD\\SimpleTripleD\\SimpleTripleD.Domain.Events\\SimpleTripleD.Domain.Events.csproj"
+            "D:\\aspdotnet\\SimpleTripleD\\SimpleTripleD.Domain.Events\\SimpleTripleD.Domain.Events.csproj": {
+              "projectPath": "D:\\aspdotnet\\SimpleTripleD\\SimpleTripleD.Domain.Events\\SimpleTripleD.Domain.Events.csproj"
             }
           }
         }

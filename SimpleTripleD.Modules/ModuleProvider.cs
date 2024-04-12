@@ -3,47 +3,31 @@ using System.Reflection;
 
 namespace SimpleTripleD.Modules
 {
-    internal class ModuleProvider<TModule> : IModuleProvider
-        where TModule : DependencyModule, new()
+    internal class ModuleProvider
     {
-        private readonly IAssemblyScanner _scanner = new AssemblyScanner();
+        public (IEnumerable<DependencyModule> Modules, IEnumerable<Type> ModuleTypes) Tuples { get; }
 
-        public IEnumerable<DependencyModule> Modules { get; }
-
-        public ModuleProvider() 
-            => Modules = GetDependencyModules();
+        public ModuleProvider(DependencyModule applicationModule)
+            => Tuples = GetDependencyModules(applicationModule);
 
         public async Task ConfigureServicesAsync(WebApplicationBuilder builder)
         {
-            foreach (var module in Modules)
-            {
+            foreach (var module in Tuples.Modules)
                 await module.ConfigureServicesAsync(builder).ConfigureAwait(false);
-                foreach (var item in module.OnConfigurationAssemblyScanning)
-                    _scanner.OnConfigurationAssemblyScanning += item;
-            }
-
-            await _scanner.ScanInConfigurationAsync().ConfigureAwait(false);
         }
 
         public async Task OnAppliactionInitalizationAsync(WebApplication app)
         {
-            foreach (var module in Modules)
-            {
+            foreach (var module in Tuples.Modules)
                 await module.OnApplicationInitializationAsync(app).ConfigureAwait(false);
-                foreach (var item in module.OnInitialzationAssemblyScanning)
-                    _scanner.OnInitialzationAssemblyScanning += item;
-            }
-        
-            await _scanner.ScanInInitializationAsync().ConfigureAwait(false);
         }
 
-        private IEnumerable<DependencyModule> GetDependencyModules()
+        private (IEnumerable<DependencyModule> Modules, IEnumerable<Type> ModuleTypes) GetDependencyModules(DependencyModule applicationModule)
         {
             var set = new HashSet<Type>();
             var list = new List<DependencyModule>();
-            var module = new TModule();
-            GetAllDependencyModules(module, list, set);
-            return list;
+            GetAllDependencyModules(applicationModule, list, set);
+            return (list, set);
         }
 
         private void GetAllDependencyModules(DependencyModule current, List<DependencyModule> modules, HashSet<Type> set)

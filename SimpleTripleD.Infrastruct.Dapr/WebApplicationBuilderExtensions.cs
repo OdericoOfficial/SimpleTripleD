@@ -7,7 +7,7 @@ using SimpleTripleD.Infrastruct.Dapr;
 
 namespace Microsoft.AspNetCore.Builder
 {
-    public static class WebApplicationBuilderExtensions
+    internal static class WebApplicationBuilderExtensions
     {
         public static WebApplicationBuilder AddDapr(this WebApplicationBuilder builder)
         {
@@ -24,7 +24,7 @@ namespace Microsoft.AspNetCore.Builder
             return builder;
         }
 
-        public static WebApplicationBuilder AddDaprClient<TClient>(this WebApplicationBuilder builder, string clusterName) where TClient : class
+        public static WebApplicationBuilder AddRestClient<TClient>(this WebApplicationBuilder builder, string clusterName, string controllerName) where TClient : class
         {
             using (var scope = builder.Services.BuildServiceProvider().CreateScope())
             {
@@ -33,7 +33,7 @@ namespace Microsoft.AspNetCore.Builder
                     .AddHttpMessageHandler<InvocationHandler>()
                     .AddTypedClient(client =>
                     {
-                        client.BaseAddress = new Uri(options.Value.EndPoints![clusterName]);
+                        client.BaseAddress = new Uri(options.Value.Routes![clusterName][controllerName]);
                         return RestService.For<TClient>(client);
                     });
                 return builder;

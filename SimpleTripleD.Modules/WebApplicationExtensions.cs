@@ -7,7 +7,7 @@ namespace Microsoft.AspNetCore.Builder
     {
         public static async Task<WebApplication> OnApplicaitonInitializationAsync(this WebApplication app)
         {
-            var moduleProvider = app.Services.GetRequiredService<IModuleProvider>();
+            var moduleProvider = app.Services.GetRequiredService<IMultiModuleApplication>();
             await moduleProvider.OnAppliactionInitalizationAsync(app).ConfigureAwait(false);
             return app;
         }

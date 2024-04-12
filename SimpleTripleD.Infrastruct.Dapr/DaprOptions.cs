@@ -2,9 +2,10 @@
 {
     public class DaprOptions
     {
-        public Dictionary<string, string>? EndPoints { get; set; }
+        public Dictionary<string, Dictionary<string, string>>? Routes { get; set; }
+
         public string? SecretStore { get; set; }
+        
         public string? StateStore { get; set; }
-        public string? PubSub { get; set; }
     }
 }

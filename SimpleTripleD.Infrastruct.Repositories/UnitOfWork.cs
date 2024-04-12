@@ -1,5 +1,6 @@
 ﻿using MediatR;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.ChangeTracking;
 using Microsoft.EntityFrameworkCore.Storage;
 using SimpleTripleD.Domain.Events;
 using SimpleTripleD.Domain.Events.Distributed;
@@ -7,7 +8,7 @@ using System.Data;
 
 namespace SimpleTripleD.Infrastruct.Repositories
 {
-    public class UnitOfWork<TDbContext> : IUnitOfWork
+    internal class UnitOfWork<TDbContext> : IUnitOfWork<TDbContext>, IUnitOfWork
         where TDbContext : DbContext
     {
         private readonly IMediator _mediator;
@@ -20,6 +21,12 @@ namespace SimpleTripleD.Infrastruct.Repositories
         public bool HasActiveTransaction
             => _currentTransaction is not null;
 
+        public DbContext Context 
+            => _context;
+
+        TDbContext IUnitOfWork<TDbContext>.Context 
+            => _context;
+
         public UnitOfWork(IMediator mediator, TDbContext context)
         {
             _mediator = mediator;
@@ -28,30 +35,30 @@ namespace SimpleTripleD.Infrastruct.Repositories
 
         public async Task<int> SaveChangesAsync(CancellationToken cancellationToken = default)
         {
+            (var domainEventArgs, var integrationEventArgs) = SelectEventArgs();
             var result = await _context.SaveChangesAsync(cancellationToken).ConfigureAwait(false);
-            await DispatchDomainEventsAsync(cancellationToken).ConfigureAwait(false);
+            await DispatchDomainEventsAsync(domainEventArgs, integrationEventArgs, cancellationToken).ConfigureAwait(false);
             return result;
         }
 
-        private async Task DispatchDomainEventsAsync(CancellationToken cancellationToken = default)
+        private (IEnumerable<EntityEntry<IDomainEvents>> domainEventArgs, IEnumerable<EntityEntry<IIntegrationEvents>> integrationEventArgs) SelectEventArgs()
+            => (_context.ChangeTracker.Entries<IDomainEvents>().Where(item => item.Entity.DomainEvents.Any()).ToArray(),
+                _context.ChangeTracker.Entries<IIntegrationEvents>().Where(item => item.Entity.IntegrationEvents.Any()).ToArray());
+
+        private async Task DispatchDomainEventsAsync(IEnumerable<EntityEntry<IDomainEvents>> domainEventArgs,
+            IEnumerable<EntityEntry<IIntegrationEvents>> integrationEventArgs, CancellationToken cancellationToken = default)
         {
-            var localDomainEvents = _context.ChangeTracker.Entries<ILocalDomainEvents>()
-                .Where(item => item.Entity.LocalEvents.Any());
+            foreach (var domainEvent in domainEventArgs.SelectMany(item => item.Entity.DomainEvents))
+                await _mediator.Publish(domainEvent, cancellationToken).ConfigureAwait(false);
 
-            var distributedDoaminEvents = _context.ChangeTracker.Entries<IDistributedDomainEvents>()
-                .Where(item => item.Entity.DistributedEvents.Any());
+            foreach (var integrationEvent in integrationEventArgs.SelectMany(item => item.Entity.IntegrationEvents))
+                await _mediator.Publish(integrationEvent, cancellationToken).ConfigureAwait(false);
 
-            foreach (var localDomainEvent in localDomainEvents.SelectMany(item => item.Entity.LocalEvents))
-                await _mediator.Publish(localDomainEvent, cancellationToken).ConfigureAwait(false);
+            foreach (var item in domainEventArgs)
+                item.Entity.ClearDomainEvents();
 
-            foreach (var distributedDoaminEvent in distributedDoaminEvents.SelectMany(item => item.Entity.DistributedEvents))
-                await _mediator.Publish(distributedDoaminEvent, cancellationToken).ConfigureAwait(false);
-
-            foreach (var localDomainEvent in localDomainEvents)
-                localDomainEvent.Entity.ClearLocalEvents();
-
-            foreach (var distributedDomainEvent in distributedDoaminEvents)
-                distributedDomainEvent.Entity.ClearDistributedEvents();
+            foreach (var item in integrationEventArgs)
+                item.Entity.ClearIntegrationEvents();
         }
 
         public async Task<IDbContextTransaction?> BeginTransactionAsync(CancellationToken cancellationToken = default)
@@ -104,9 +111,25 @@ namespace SimpleTripleD.Infrastruct.Repositories
         }
 
         public void Dispose()
-            => _context.Dispose();
+        {
+            if (_currentTransaction is not null)
+            {
+                _currentTransaction.Rollback();
+                _currentTransaction.Dispose();
+                _currentTransaction = null;
+            }
+            _context.Dispose();
+        }
 
-        public ValueTask DisposeAsync()
-            => _context.DisposeAsync();
+        public async ValueTask DisposeAsync()
+        {
+            if (_currentTransaction is not null)
+            {
+                await _currentTransaction.RollbackAsync().ConfigureAwait(false);
+                await _currentTransaction.DisposeAsync().ConfigureAwait(false);
+                _currentTransaction = null;
+            }
+            await _context.DisposeAsync().ConfigureAwait(false);
+        }
     }
 }

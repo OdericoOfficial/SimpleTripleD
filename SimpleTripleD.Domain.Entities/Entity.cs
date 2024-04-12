@@ -14,8 +14,6 @@
         public TKey Id
             => _id;
 
-        public Entity() { }
-
         public override object[] Keys
             => IsTransient() ? [] : [Id];
 

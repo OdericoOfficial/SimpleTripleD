@@ -1,15 +1,17 @@
 ﻿using Microsoft.EntityFrameworkCore;
-using SimpleTripleD.Domain.Entities.Auditting;
+using SimpleTripleD.Domain.Auditting;
+using SimpleTripleD.Infrastruct.MultiTenancy;
 
 namespace SimpleTripleD.Infrastruct.Auditting
 {
-    public abstract class AudittingDbContext : DbContext
+    public abstract class AudittingDbContext : MultiTenancyDbContext
     {
-        private List<AudittingEntry>? _entries;
+        private readonly IAudttingRecordFactory _factory;
 
-        internal virtual DbSet<AudittingRecord> AudittingRecords { get; set; }
+        public virtual DbSet<AudittingRecord> AudittingRecords { get; set; }
 
-        public AudittingDbContext(DbContextOptions options) : base(options) { }
+        public AudittingDbContext(IAudttingRecordFactory factory, ITenantProvider provider, DbContextOptions options) : base(provider, options)
+            => _factory = factory;
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
@@ -19,53 +21,20 @@ namespace SimpleTripleD.Infrastruct.Auditting
 
         public override int SaveChanges()
         {
-            PreSaveChanges();
-            var result = base.SaveChanges();
-            PostSaveChanges();
-            return result;
+            var entities = ChangeTracker.Entries()
+                .Where(item => item.State == (EntityState.Deleted | EntityState.Modified | EntityState.Added)
+                    && typeof(IAudittingObject).IsAssignableFrom(item.Entity.GetType()));
+            _factory.AddEntityRecords(entities);
+            return base.SaveChanges();
         }
 
-        public override async Task<int> SaveChangesAsync(CancellationToken cancellationToken = default)
+        public override Task<int> SaveChangesAsync(CancellationToken cancellationToken = default)
         {
-            PreSaveChanges();
-            var result = await base.SaveChangesAsync(cancellationToken).ConfigureAwait(false); 
-            await PostSaveChangesAsync().ConfigureAwait(false);
-            return result;
-        }
-    
-        private void PreSaveChanges()
-        {
-            if (_entries is null)
-                _entries = new List<AudittingEntry>();
-            else
-                _entries.Clear();
-
-            foreach (var entry in ChangeTracker.Entries().AsParallel())
-            {
-                if (entry.State == EntityState.Detached 
-                    || entry.State == EntityState.Unchanged
-                        || entry.Entity is not IAudittingObject obj)
-                    continue;
-                _entries.Add(new AudittingEntry(entry, obj));
-            }
-        }
-
-        private void PostSaveChanges()
-        {
-            if (_entries is null)
-                return;
-
-            AudittingRecords.AddRange(_entries.Select(item => new AudittingRecord(item)));
-            base.SaveChanges();
-        }
-
-        private async Task PostSaveChangesAsync()
-        {
-            if (_entries is null)
-                return;
-
-            await AudittingRecords.AddRangeAsync(_entries.Select(item => new AudittingRecord(item))).ConfigureAwait(false);
-            await base.SaveChangesAsync().ConfigureAwait(false);
+            var entities = ChangeTracker.Entries()
+                .Where(item => item.State == (EntityState.Deleted | EntityState.Modified | EntityState.Added)
+                    && typeof(IAudittingObject).IsAssignableFrom(item.Entity.GetType()));
+            _factory.AddEntityRecords(entities);
+            return base.SaveChangesAsync(cancellationToken);    
         }
     }
 }

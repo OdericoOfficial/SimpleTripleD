@@ -3,24 +3,24 @@ using SimpleTripleD.Domain.Entities;
 
 namespace SimpleTripleD.Infrastruct.Repositories
 {
-    public class ReadOnlyRepository<TDbContext, TAggregateRoot> : IReadOnlyRepository<TAggregateRoot>
+    internal abstract class ReadOnlyRepository<TDbContext, TAggregateRoot> : IReadOnlyRepository<TAggregateRoot>
         where TDbContext : DbContext
         where TAggregateRoot : class, IAggregateRoot
     {
-        protected readonly TDbContext _context;
+        protected readonly IUnitOfWork<TDbContext> _unitOfWork;
 
-        public ReadOnlyRepository(TDbContext context)
-            => _context = context;
+        public ReadOnlyRepository(IUnitOfWork<TDbContext> unitOfWork)
+            => _unitOfWork = unitOfWork;
 
         public IQueryable<TAggregateRoot> AsQueryable()
-            => _context.Set<TAggregateRoot>().AsNoTracking();
+            => _unitOfWork.Context.Set<TAggregateRoot>().AsNoTracking();
     }
 
-    public class ReadOnlyRepository<TDbContext, TAggregateRoot, TKey> : ReadOnlyRepository<TDbContext, TAggregateRoot>, IReadOnlyRepository<TAggregateRoot, TKey>, IReadOnlyRepository<TAggregateRoot>
+    internal abstract class ReadOnlyRepository<TDbContext, TAggregateRoot, TKey> : ReadOnlyRepository<TDbContext, TAggregateRoot>, IReadOnlyRepository<TAggregateRoot, TKey>, IReadOnlyRepository<TAggregateRoot>
         where TDbContext : DbContext
         where TAggregateRoot : class, IAggregateRoot<TKey>
     {
-        public ReadOnlyRepository(TDbContext context) : base(context)
+        public ReadOnlyRepository(IUnitOfWork<TDbContext> context) : base(context)
         {
         }
     }

@@ -1,6 +1,6 @@
-﻿using SimpleTripleD.Domain.Entities;
+﻿using SimpleTripleD.Domain.Auditting;
+using SimpleTripleD.Domain.Entities;
 using SimpleTripleD.Infrastruct.Repositories;
-using SimpleTripleD.Domain.Entities.Auditting;
 
 namespace SimpleTripleD.Infrastruct.Auditting.Repository
 {

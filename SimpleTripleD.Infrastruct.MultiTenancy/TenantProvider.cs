@@ -1,21 +1,21 @@
 ﻿using Microsoft.AspNetCore.Http;
 using Microsoft.EntityFrameworkCore;
-using Microsoft.Extensions.Hosting;
-using SimpleTripleD.Domain.Entities.MultiTenancy;
+using SimpleTripleD.Domain.MultiTenancy;
+using SimpleTripleD.Infrastruct.Repositories;
 
 namespace SimpleTripleD.Infrastruct.MultiTenancy
 {
     public class TenantProvider : ITenantProvider
     {
         private readonly string? _host;
-        private readonly TenantDbContext _context;
+        private readonly IReadOnlyRepository<Tenant> _repository;
         private Guid? _tenantId;
         private string? _connectString;
 
-        public TenantProvider(IHttpContextAccessor accessor, TenantDbContext context) 
+        public TenantProvider(IHttpContextAccessor accessor, IReadOnlyRepository<Tenant> repository) 
         {
             _host = accessor.HttpContext?.Request.Host.Value;
-            _context = context;
+            _repository = repository;
         }
 
         public string? GetConnnectString()
@@ -26,7 +26,7 @@ namespace SimpleTripleD.Infrastruct.MultiTenancy
             if (_host is null)
                 return null;
 
-            _connectString = _context.Tenants.AsNoTracking().FirstOrDefault(item => item.Host == _host)?.ConnectionString;
+            _connectString = _repository.AsQueryable().FirstOrDefault(item => item.Host == _host)?.ConnectionString;
             return _connectString;
         }
 
@@ -38,7 +38,7 @@ namespace SimpleTripleD.Infrastruct.MultiTenancy
             if (_host is null)
                 return null;
 
-            _connectString = (await _context.Tenants.AsNoTracking().FirstOrDefaultAsync(item => item.Host == _host).ConfigureAwait(false))?.ConnectionString;
+            _connectString = (await _repository.FirstOrDefaultAsync(item => item.Host == _host).ConfigureAwait(false))?.ConnectionString;
             return _connectString;
         }
 
@@ -50,7 +50,7 @@ namespace SimpleTripleD.Infrastruct.MultiTenancy
             if (_host is null)
                 return Guid.Empty;
 
-            _tenantId = _context.Tenants.AsNoTracking().FirstOrDefault(item => item.Host == _host)?.Id ?? Guid.Empty;
+            _tenantId = _repository.AsQueryable().FirstOrDefault(item => item.Host == _host)?.Id ?? Guid.Empty;
             return _tenantId.Value;
         }
 
@@ -62,7 +62,7 @@ namespace SimpleTripleD.Infrastruct.MultiTenancy
             if (_host is null)
                 return Guid.Empty;
 
-            _tenantId = (await _context.Tenants.AsNoTracking().FirstOrDefaultAsync(item => item.Host == _host).ConfigureAwait(false))?.Id ?? Guid.Empty;
+            _tenantId = (await _repository.FirstOrDefaultAsync(item => item.Host == _host).ConfigureAwait(false))?.Id ?? Guid.Empty;
             return _tenantId.Value;
         }
     }
